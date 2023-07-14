@@ -237,7 +237,7 @@ func _request(method string, params interface{}) (ResponseShell, Error) {
 	}
 
 	// fire off the POST request
-	resp, err := http.Post(endpoint, "application/json-rpc", bytes.NewReader(body))
+	resp, err := http.Post(endpoint, "application/json", bytes.NewReader(body))
 	if err != nil {
 		return clientError(err.Error())
 	}
