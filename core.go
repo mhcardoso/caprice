@@ -166,6 +166,8 @@ type IntegerSeqReq struct {
 	Min         int    `json:"min"`
 	Max         int    `json:"max"`
 	Replacement bool   `json:"replacement"` 
+    Base        int    `json:"base"`
+    PreRan     *string `json:"pregeneratedRandomization"`
 }
 
 type DecimalFractionsReq struct {

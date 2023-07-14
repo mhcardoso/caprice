@@ -15,8 +15,8 @@ func (rng trueRNG) GenerateIntegersRaw(n, min, max int, replacement bool) (Resul
 
 func (rng trueRNG) GenerateIntegerSeqRaw(n, length, min, max int, replacement bool) (Result, Error) {
 
-    body := IntegerSeqReq{ApiKey: rng.apiKey, N: n, Length: length, Min: min, Max: max, Replacement: replacement}
-	result, err := Request("generateIntegerSequence", body)
+    body := IntegerSeqReq{ApiKey: rng.apiKey, N: n, Length: length, Min: min, Max: max, Replacement: replacement, Base: 10, PreRan: nil}
+	result, err := Request("generateIntegerSequences", body)
 	if err.Message != "" {
 		return Result{}, err
 	}
