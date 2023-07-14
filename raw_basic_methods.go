@@ -13,6 +13,16 @@ func (rng trueRNG) GenerateIntegersRaw(n, min, max int, replacement bool) (Resul
 	return result.(Result), err
 }
 
+func (rng trueRNG) GenerateIntegerSeqRaw(n, length, min, max int, replacement bool) (Result, Error) {
+
+    body := IntegerSeqReq{ApiKey: rng.apiKey, N: n, Length: length, Min: min, Max: max, Replacement: replacement}
+	result, err := Request("generateIntegerSequence", body)
+	if err.Message != "" {
+		return Result{}, err
+	}
+	return result.(Result), err
+}
+
 // Generate `n` random decimal fractions with precision upto `decimalPlaces`, but return raw JSON from the API
 // as a formatted Result struct. If `replacement` is true, pick random numbers with replacement. Default is false.
 func (rng trueRNG) GenerateDecimalFractionsRaw(n, decimalPlaces int, replacement bool) (Result, Error) {

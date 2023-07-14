@@ -202,3 +202,18 @@ func TestGetUsage(t *testing.T) {
 		}
 	})
 }
+
+func TestGenerateIntegerSequence(t *testing.T) {
+
+	t.Run("Test GenerateIntegerSequence network call", func(t *testing.T) {
+		if os.Getenv("APIKEY") == "" {
+			t.Skip("Skipping direct network call tests because APIKEY env variable is not set")
+		}
+		rng := TrueRNG(os.Getenv("APIKEY"))
+		numbers, err := rng.GenerateIntegerSeq(3, 4, 1, 6, true)
+		t.Log(numbers)
+		if err.Message != "" {
+			t.Error(err)
+		}
+	})
+}

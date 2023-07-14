@@ -21,6 +21,26 @@ func (rng trueRNG) GenerateIntegers(n, min, max int, replacement bool) ([]int, E
 	return intArray, Error{}
 }
 
+func (rng trueRNG) GenerateIntegerSeq(n, length, min, max int, replacement bool) ([][]int, Error) {
+
+	result, err := rng.GenerateIntegerSeqRaw(n, length, min, max, replacement)
+
+	if err.Message != "" {
+		return [][]int{}, err
+	}
+
+	data, _ := result.Content().([][]interface{})
+    
+	intArray := make([][]int, n)
+	for i, seq := range data {
+        intArray[i] = make([]int, length)
+        for j, num := range seq {
+		    intArray[i][j] = int(num.(float64))
+        }
+    }
+
+	return intArray, Error{}
+}
 // Generate `n` random decimal fractions with precision upto `decimalPlaces`.
 // If `replacement` is true, pick random numbers with replacement. Default is false.
 func (rng trueRNG) GenerateDecimalFractions(n, decimalPlaces int, replacement bool) ([]float64, Error) {

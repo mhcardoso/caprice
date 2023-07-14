@@ -9,7 +9,7 @@ import (
 )
 
 // The actual URL endpoint to hit
-const endpoint string = "https://api.random.org/json-rpc/1/invoke"
+const endpoint string = "https://api.random.org/json-rpc/4/invoke"
 
 // Caprice's core object. Responsible for safekeeping the API key,
 // as well as managing advisory delays in concurrent implementations.
@@ -157,6 +157,15 @@ type IntegersReq struct {
 	Min         int    `json:"min"`
 	Max         int    `json:"max"`
 	Replacement bool   `json:"replacement"`
+}
+
+type IntegerSeqReq struct {
+	ApiKey      string `json:"apiKey"`
+	N           int    `json:"n"`
+    Length      int    `json:"length"`
+	Min         int    `json:"min"`
+	Max         int    `json:"max"`
+	Replacement bool   `json:"replacement"` 
 }
 
 type DecimalFractionsReq struct {
