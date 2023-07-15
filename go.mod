@@ -1,3 +1,3 @@
-module github.com/mhcardoo/caprice
+module github.com/mhcardoso/caprice
 
 go 1.20
