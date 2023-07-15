@@ -29,16 +29,16 @@ func (rng trueRNG) GenerateIntegerSeq(n, length, min, max int, replacement bool)
 		return [][]int{}, err
 	}
 
-	data, _ := result.Content().([][]interface{})
-    
-	intArray := make([][]int, n)
-	for i, seq := range data {
-        intArray[i] = make([]int, length)
-        for j, num := range seq {
-		    intArray[i][j] = int(num.(float64))
+    data, _ := result.Content().([]interface{})
+
+    intArray := make([][]int, len(data))
+    for i, seq := range data {
+        inSeq := seq.([]interface{})
+        intArray[i] = make([]int, len(inSeq))
+        for j, num := range inSeq {
+            intArray[i][j] = int(num.(float64))
         }
     }
-
 	return intArray, Error{}
 }
 // Generate `n` random decimal fractions with precision upto `decimalPlaces`.
